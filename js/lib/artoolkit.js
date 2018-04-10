@@ -34,13 +34,14 @@ var ARToolkitControllerModel = widgets.DOMWidgetModel.extend({
         this.get('stream').stream.then((stream) => {
             var param = new ARCameraParam();
             param.onload = () => {
-                var controller = new ARController(this.get('stream').width, this.get('stream').height, param);
+                var video = this.get('stream').video
+                var controller = new ARController(video.videoWidth, video.videoHeight, param);
                 controller.debugSetup();
-                var camera_mat = arController.getCameraMatrix();
+                var camera_mat = controller.getCameraMatrix();
                 console.log('camera_mat', camera_mat)
                 var tick = () => {
-                    controller.detectMarker(stream);
-                    var marker_num = arController.getMarkerNum();
+                    controller.detectMarker(video);
+                    var marker_num = controller.getMarkerNum();
                     if(marker_num > 0) {
 
                         if(this.get('visible')) {
