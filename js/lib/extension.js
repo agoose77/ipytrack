@@ -8,6 +8,7 @@ if (window.require) {
         map: {
             "*" : {
                 "jupyter-track": "nbextensions/jupyter-track/index",
+                "fs": "nbextensions/jupyter-track/index",
             }
         }
     });

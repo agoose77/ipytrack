@@ -25,3 +25,12 @@ class HeadTrackr(widgets.DOMWidget):
 
     def close(self):
         self.send({'msg': 'close'})
+
+class ARToolkitController(widgets.DOMWidget):
+    _view_name = Unicode('ARToolkitControllerView').tag(sync=True)
+    _model_name = Unicode('ARToolkitControllerModel').tag(sync=True)
+    _view_module = Unicode('jupyter-track').tag(sync=True)
+    _model_module = Unicode('jupyter-track').tag(sync=True)
+    _view_module_version = Unicode(semver_range_frontend).tag(sync=True)
+    _model_module_version = Unicode(semver_range_frontend).tag(sync=True)
+    stream = Instance(ipywebrtc.MediaStream, allow_none=True).tag(sync=True, **widgets.widget_serialization)

@@ -7,6 +7,7 @@ var rules = [
     { test: /\.css$/, use: ['style-loader', 'css-loader']}
 ]
 
+var externals = ['@jupyter-widgets/base', 'fs']
 
 module.exports = [
     {// Notebook extension
@@ -40,7 +41,7 @@ module.exports = [
         module: {
             rules: rules
         },
-        externals: ['@jupyter-widgets/base']
+        externals: externals
     },
     {// Embeddable jupyter-track bundle
      //
@@ -67,6 +68,6 @@ module.exports = [
         module: {
             rules: rules
         },
-        externals: ['@jupyter-widgets/base']
+        externals: externals
     }
 ];
