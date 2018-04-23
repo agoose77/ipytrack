@@ -39,6 +39,8 @@ var ARToolkitControllerModel = widgets.DOMWidgetModel.extend({
                 controller.debugSetup();
                 var camera_mat = controller.getCameraMatrix();
                 console.log('camera_mat', camera_mat)
+                this.set('matrix_camera', Array.prototype.slice.call(camera_mat)) // convert to normal array
+                this.save_changes()
                 var tick = () => {
                     controller.detectMarker(video);
                     var marker_num = controller.getMarkerNum();
@@ -53,6 +55,9 @@ var ARToolkitControllerModel = widgets.DOMWidgetModel.extend({
                         }
                         controller.transMatToGLMat(marker_matrix, gl_matrix);
                         this.set('matrix_object', gl_matrix.slice())
+                        this.save_changes()
+                    } else {
+                        this.set('visible', false)
                         this.save_changes()
                     }
 

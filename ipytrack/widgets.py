@@ -34,3 +34,6 @@ class ARToolkitController(widgets.DOMWidget):
     _view_module_version = Unicode(semver_range_frontend).tag(sync=True)
     _model_module_version = Unicode(semver_range_frontend).tag(sync=True)
     stream = Instance(ipywebrtc.MediaStream, allow_none=True).tag(sync=True, **widgets.widget_serialization)
+    matrix_object = List(CFloat, default_value=[0] * 16, allow_none=True, minlen=16, maxlen=16).tag(sync=True)
+    matrix_camera = List(CFloat, default_value=[0] * 16, allow_none=True, minlen=16, maxlen=16).tag(sync=True)
+    visible = Bool(False).tag(sync=True)
