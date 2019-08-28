@@ -1,5 +1,5 @@
-require('./artoolkit.debug.js')
-require('./artoolkit.api.js')
+var toolkit = require('./artoolkit.debug.js')
+var toolkit_api = require('./artoolkit.api.js')
 var widgets = require('@jupyter-widgets/base');
 var _ = require('lodash');
 var semver_range = require('./utils.js').semver_range;
@@ -26,6 +26,7 @@ var ARToolkitControllerModel = widgets.DOMWidgetModel.extend({
     initialize: function() {
         ARToolkitControllerModel.__super__.initialize.apply(this, arguments);
         this.keep_running = true;
+        window.last_artoolkit_controller = this;
 
         var marker_matrix = new Float64Array(12);
         var gl_matrix = new Array(16)
@@ -44,6 +45,7 @@ var ARToolkitControllerModel = widgets.DOMWidgetModel.extend({
                 var tick = () => {
                     controller.detectMarker(video);
                     var marker_num = controller.getMarkerNum();
+                    //console.log('marker_num', marker_num)
                     if(marker_num > 0) {
 
                         if(this.get('visible')) {
