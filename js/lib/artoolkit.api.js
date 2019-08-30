@@ -47,6 +47,7 @@
 		this.canvas = document.createElement('canvas');
 		this.canvas.width = w;
 		this.canvas.height = h;
+
 		this.ctx = this.canvas.getContext('2d');
 
 		this.videoWidth = w;
@@ -1032,7 +1033,6 @@
 		}
 
 		this.ctx.restore();
-
 		var imageData = this.ctx.getImageData(0, 0, this.canvas.width, this.canvas.height);
 		var data = imageData.data;
 
